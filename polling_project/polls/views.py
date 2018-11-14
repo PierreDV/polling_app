@@ -28,6 +28,8 @@ def vote(request, question_id):
             'error_message': "You didn't select a choice.",
         })
     else:
+        #TODO fix potential race contiditon issues if two users vote simultainously.
+        # https://docs.djangoproject.com/en/2.1/ref/models/expressions/#avoiding-race-conditions-using-f
         selected_choice.votes += 1
         selected_choice.save()
 
